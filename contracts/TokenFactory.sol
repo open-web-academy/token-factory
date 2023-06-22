@@ -6,7 +6,9 @@ contract TokenFactory {
     function createToken(
         string memory name,
         string memory description
-    ) public {
+    ) 
+    public 
+    {
         MyToken token = new MyToken(
             name,
             description
