@@ -4,14 +4,18 @@ import "./MyToken.sol";
 contract TokenFactory {
     MyToken[] private _tokens;
     function createToken(
+        address tokenOwner,
         string memory name,
-        string memory description
+        string memory ticker,
+        uint256 amount
     ) 
     public 
     {
         MyToken token = new MyToken(
+            tokenOwner,
             name,
-            description
+            ticker,
+            amount
         );
         _tokens.push(token);
     }

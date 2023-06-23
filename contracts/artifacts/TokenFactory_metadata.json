@@ -32,14 +32,24 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "tokenOwner",
+						"type": "address"
+					},
+					{
 						"internalType": "string",
 						"name": "name",
 						"type": "string"
 					},
 					{
 						"internalType": "string",
-						"name": "description",
+						"name": "ticker",
 						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
 					}
 				],
 				"name": "createToken",
@@ -132,19 +142,19 @@
 			]
 		},
 		"contracts/MyToken.sol": {
-			"keccak256": "0x0e831c6a15840ac52fafb6ea024364c6504ee7f8c740376dfc6cde7999fa278d",
+			"keccak256": "0x976fee42442eaad87a388086a460c39d009ad35c2717e1e14f317499f531d811",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://c97abfda2acc4256db3e76f345148c431ee3449895c94c9575536f47b3b5ad18",
-				"dweb:/ipfs/QmSjwmx3uFKFdMwM9hddJEcR5oYd3H6QwdL7QuK7gJu8UH"
+				"bzz-raw://1a8e51c80d9f3d635e0c1ee51fcb948879a8eea7e22bc48f5ef1686ffefd2866",
+				"dweb:/ipfs/QmUMgAnHATasUhLRFa9f4GRPvqvak5UjbJYmnXLMvWCgZp"
 			]
 		},
 		"contracts/TokenFactory.sol": {
-			"keccak256": "0x357b97b8c94e66f03c198e7d670cca95477fe64437081e35593e86b7460ae97c",
+			"keccak256": "0x8d434abd8cb15cefeeb4ca8dc997629f3a3930a8fa6dc0d3e75433690cf4e653",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://1c3c8854bd16e73da2579d73997bca6a5dd07e102beff3678147c5d3b4193929",
-				"dweb:/ipfs/QmcZXtFjWnagZbzb9ui7suKwMQMrw1XaAdPUgHGZSTqjd7"
+				"bzz-raw://9de30c87a69d2cdad9cbc0c33eecab6f41d868f39af0a64a4067ffb27799c6fc",
+				"dweb:/ipfs/QmWr2UXC9MbtWv1Tcts9Yz8YQ9R8cNdKkh3uDLhPC3iV5a"
 			]
 		}
 	},
