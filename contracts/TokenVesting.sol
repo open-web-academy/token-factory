@@ -1,40 +1,88 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-
-// CODE NOT AUDITED
-// USE ONLY FOR EDUCATIONAL PURPOSE
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract TokenVesting {
-    address public token;                           // Address of the token being vested
-    mapping(address => uint256) public vestingSchedule;  // Mapping to track vesting schedules
-
-    constructor(address _token) {
-        token = _token;
+    struct Vesting {
+        address beneficiary;
+        uint256 cliffDuration;
+        uint256 vestingDuration;
+        uint256 start;
+        uint256 totalTokens;
+        uint256 releasedTokens;
+        address tokenAddress;
     }
 
-    function setVestingSchedule(address _beneficiary, uint256 _amount, uint256 _releaseTime) external {
-        require(_amount > 0, "Amount must be greater than zero");
+    mapping(address => Vesting) public vestings;
 
-        // Perform token transfer to the vesting contract
-        IERC20(token).transferFrom(msg.sender, address(this), _amount);  // Transfer `_amount` tokens from the sender to the vesting contract
+    constructor() {}
 
-        vestingSchedule[_beneficiary] = _releaseTime;
+    function setVestingAndRequestTokens(
+        address _beneficiary,
+        uint256 _cliffDuration,
+        uint256 _vestingDuration,
+        uint256 _start,
+        uint256 _totalTokens,
+        uint256 _requestedTokens,
+        address _tokenAddress
+    ) external {
+        require(
+            _beneficiary != address(0),
+            "TokenVesting: beneficiary is the zero address"
+        );
+        require(
+            _cliffDuration <= _vestingDuration,
+            "TokenVesting: cliff duration exceeds vesting duration"
+        );
+        require(
+            _start + _vestingDuration > block.timestamp,
+            "TokenVesting: vesting end timestamp precedes current timestamp"
+        );
+        require(
+            _requestedTokens <= _totalTokens,
+            "TokenVesting: requested tokens exceed total tokens"
+        );
+
+        Vesting storage vesting = vestings[_beneficiary];
+        require(vesting.beneficiary == address(0), "TokenVesting: vesting already exists for the beneficiary");
+
+        vesting.beneficiary = _beneficiary;
+        vesting.cliffDuration = _cliffDuration;
+        vesting.vestingDuration = _vestingDuration;
+        vesting.start = _start;
+        vesting.totalTokens = _totalTokens;
+        vesting.tokenAddress = _tokenAddress;
+
+        IERC20 token = IERC20(_tokenAddress);
+        token.transferFrom(msg.sender, address(this), _requestedTokens);
     }
 
-    function releaseTokens() external {
-        uint256 releaseTime = vestingSchedule[msg.sender];
-        require(releaseTime > 0 && block.timestamp >= releaseTime, "Tokens not yet released");
+    function release() public {
+        Vesting storage vesting = vestings[msg.sender];
+        require(vesting.beneficiary != address(0), "TokenVesting: no vesting found for sender");
 
-        // Perform token transfer to the beneficiary
-        IERC20(token).transfer(msg.sender, IERC20(token).balanceOf(address(this)));  // Transfer all remaining tokens in the vesting contract to the beneficiary
+        require(block.timestamp >= vesting.start, "TokenVesting: vesting has not started yet");
 
-        // Reset the release time to prevent multiple releases
-        vestingSchedule[msg.sender] = 0;
+        IERC20 token = IERC20(vesting.tokenAddress);
+        uint256 vestedTokens = vestedAmount(vesting);
+        uint256 unreleasedTokens = vestedTokens - vesting.releasedTokens;
+        require(unreleasedTokens > 0, "TokenVesting: no tokens to release");
 
-        // Emit an event to indicate a successful token release
-        emit TokensReleased(msg.sender);
+        vesting.releasedTokens = vestedTokens;
+        token.transfer(vesting.beneficiary, unreleasedTokens);
     }
 
-    event TokensReleased(address indexed beneficiary);
+    function vestedAmount(Vesting memory _vesting) internal view returns (uint256) {
+        IERC20 token = IERC20(_vesting.tokenAddress);
+        uint256 currentBalance = token.balanceOf(address(this));
+        uint256 totalVestingTime = _vesting.start + _vesting.vestingDuration;
+        if (block.timestamp < _vesting.start + _vesting.cliffDuration) {
+            return 0;
+        } else if (block.timestamp >= totalVestingTime) {
+            return _vesting.totalTokens;
+        } else {
+            uint256 vestedPercentage = (block.timestamp - _vesting.start - _vesting.cliffDuration) * 100 / _vesting.vestingDuration;
+            return _vesting.totalTokens * vestedPercentage / 100;
+        }
+    }
 }
