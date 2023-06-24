@@ -6,6 +6,19 @@
 	"output": {
 		"abi": [
 			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "mensaje",
+						"type": "string"
+					}
+				],
+				"name": "MensajeImpreso",
+				"type": "event"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -41,7 +54,7 @@
 				"outputs": [
 					{
 						"internalType": "contract MyToken[]",
-						"name": "coll",
+						"name": "",
 						"type": "address[]"
 					}
 				],
@@ -175,11 +188,11 @@
 			]
 		},
 		"contracts/TokenFactory.sol": {
-			"keccak256": "0xb3a9a07373313c6e79af555fac10c9cb7f9807f5fbe7f767db2090e1751e8fd2",
+			"keccak256": "0xc8fdc163e165161a158aab929e5af93e2bac44f09f6362ef109121c0b65d0e94",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://8f9b20a9239b354c6aa4182960d35b67f750fac8a99870058518fa0bfc11bb37",
-				"dweb:/ipfs/QmTWwiHrhPhkyLfEjeWqNuVuKKhMdcqpSyGwunSDMwsW2G"
+				"bzz-raw://39af0a64f8f956fff1a2a74e13764984b824ec01f37395752d8cb982abfd7495",
+				"dweb:/ipfs/QmUU4c3hwNduQsxam3c4gCmMBSVsjq41PKxX3xrQpE7WnE"
 			]
 		}
 	},
