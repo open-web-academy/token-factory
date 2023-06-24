@@ -45,17 +45,12 @@
 						"type": "uint256"
 					},
 					{
-						"internalType": "uint256",
-						"name": "_requestedTokens",
-						"type": "uint256"
-					},
-					{
 						"internalType": "address",
 						"name": "_tokenAddress",
 						"type": "address"
 					}
 				],
-				"name": "setVestingAndRequestTokens",
+				"name": "setVesting",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -170,11 +165,11 @@
 			]
 		},
 		"contracts/TokenVesting.sol": {
-			"keccak256": "0x54d83b11ae976b8c65e5dc039b75c907168908fe1f8724ccd4c6f8df778e709c",
+			"keccak256": "0x096b2746d905136394d5f6fa59b27e5e969d592392fef63acded6e60f99bbc98",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://2ac2ec01466a035f419ffbeff9b444558b691a0e6de0fa6677f114a2d972c7f5",
-				"dweb:/ipfs/Qmc4Vwiai9g1x8JtfeAsDSo5hQLEpRXDeze7NywJ2LAS3B"
+				"bzz-raw://f464aa14cbb34cf6287ce8e031b5f38db648511f1c5538c954304062efdc6dd0",
+				"dweb:/ipfs/QmPB9ekFW76nPHcS1khXdc2P88y3QYbrLXBAzBogkH88ru"
 			]
 		}
 	},

@@ -9,6 +9,25 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "_tokens",
+				"outputs": [
+					{
+						"internalType": "contract MyToken",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
 						"name": "limit",
 						"type": "uint256"
 					},
@@ -53,7 +72,13 @@
 					}
 				],
 				"name": "createToken",
-				"outputs": [],
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
 				"stateMutability": "nonpayable",
 				"type": "function"
 			}
@@ -150,11 +175,11 @@
 			]
 		},
 		"contracts/TokenFactory.sol": {
-			"keccak256": "0x8d434abd8cb15cefeeb4ca8dc997629f3a3930a8fa6dc0d3e75433690cf4e653",
+			"keccak256": "0xb3a9a07373313c6e79af555fac10c9cb7f9807f5fbe7f767db2090e1751e8fd2",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://9de30c87a69d2cdad9cbc0c33eecab6f41d868f39af0a64a4067ffb27799c6fc",
-				"dweb:/ipfs/QmWr2UXC9MbtWv1Tcts9Yz8YQ9R8cNdKkh3uDLhPC3iV5a"
+				"bzz-raw://8f9b20a9239b354c6aa4182960d35b67f750fac8a99870058518fa0bfc11bb37",
+				"dweb:/ipfs/QmTWwiHrhPhkyLfEjeWqNuVuKKhMdcqpSyGwunSDMwsW2G"
 			]
 		}
 	},

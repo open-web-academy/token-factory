@@ -17,13 +17,12 @@ contract TokenVesting {
 
     constructor() {}
 
-    function setVestingAndRequestTokens(
+    function setVesting(
         address _beneficiary,
         uint256 _cliffDuration,
         uint256 _vestingDuration,
         uint256 _start,
         uint256 _totalTokens,
-        uint256 _requestedTokens,
         address _tokenAddress
     ) external {
         require(
@@ -38,10 +37,6 @@ contract TokenVesting {
             _start + _vestingDuration > block.timestamp,
             "TokenVesting: vesting end timestamp precedes current timestamp"
         );
-        require(
-            _requestedTokens <= _totalTokens,
-            "TokenVesting: requested tokens exceed total tokens"
-        );
 
         Vesting storage vesting = vestings[_beneficiary];
         require(vesting.beneficiary == address(0), "TokenVesting: vesting already exists for the beneficiary");
@@ -54,7 +49,7 @@ contract TokenVesting {
         vesting.tokenAddress = _tokenAddress;
 
         IERC20 token = IERC20(_tokenAddress);
-        token.transferFrom(msg.sender, address(this), _requestedTokens);
+        token.transferFrom(msg.sender, address(this), _totalTokens);
     }
 
     function release() public {
