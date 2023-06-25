@@ -6,19 +6,6 @@
 	"output": {
 		"abi": [
 			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": false,
-						"internalType": "string",
-						"name": "mensaje",
-						"type": "string"
-					}
-				],
-				"name": "MensajeImpreso",
-				"type": "event"
-			},
-			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -93,6 +80,19 @@
 					}
 				],
 				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getNumberTokens",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			}
 		],
@@ -188,11 +188,11 @@
 			]
 		},
 		"contracts/TokenFactory.sol": {
-			"keccak256": "0xc8fdc163e165161a158aab929e5af93e2bac44f09f6362ef109121c0b65d0e94",
+			"keccak256": "0xac200471fea85a681471bb1d5d085626773014215dbec2b36d1edab0808e7b65",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://39af0a64f8f956fff1a2a74e13764984b824ec01f37395752d8cb982abfd7495",
-				"dweb:/ipfs/QmUU4c3hwNduQsxam3c4gCmMBSVsjq41PKxX3xrQpE7WnE"
+				"bzz-raw://15b4286f6cf74a51d1463054ed0260e156c1719963b0fd6389ce19f755a84b88",
+				"dweb:/ipfs/QmQ4KWsBz4rRPVfx6Dqg1STB16q44jmKThmFhe5Bht487Z"
 			]
 		}
 	},
