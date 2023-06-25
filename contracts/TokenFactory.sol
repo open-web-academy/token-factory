@@ -5,7 +5,6 @@ import "./MyToken.sol";
 
 contract TokenFactory {
     MyToken[] public _tokens;
-    event MensajeImpreso(string mensaje);
 
     function createToken(
         address tokenOwner,
@@ -33,35 +32,7 @@ contract TokenFactory {
         return tokens;
     }
 
-
-    /*
-    function tokensCreatedByAddress(address creator,uint256 limit, uint256 offset)
-        public
-        view
-        returns (MyToken[] memory)
-    {
-        uint256 count = 0;
-        /*for (uint256 i = 0; i < _tokens.length; i++) {
-            if (_tokens[i].owner() == creator) {
-                count++;
-            }
-        }
-        
-        uint256 endIndex = offset + limit;
-        MyToken[] memory userTokens = new MyToken[](endIndex - offset);
-        uint256 index = 0;
-        for (uint256 i = 0; i < _tokens.length; i++) {
-            if (_tokens[i].owner() == creator) {
-                userTokens[index] = _tokens[i];
-                index++;
-            }
-        }
-       
-
-        MyToken[] memory tokens = new MyToken[](endIndex - offset);
-        for (uint256 i = offset; i < endIndex; i++) {
-            tokens[i - offset] = _tokens[i];
-        }
-        return userTokens;
-    }*/
+    function getNumberTokens() external view returns (uint256) {
+        return _tokens.length;
+    }
 }
